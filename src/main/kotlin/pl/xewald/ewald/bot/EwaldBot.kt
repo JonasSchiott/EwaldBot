@@ -33,8 +33,7 @@ class EwaldBot(val config: EwaldBotConfig) {
         val token = config.token
         if (token.isEmpty() || token == "TOKEN")
             throw EwaldBotException("You have to set token in configuration file!")
-        jda = JDABuilder(AccountType.BOT)
-                .setToken(token)
+        jda = JDABuilder.createDefault(token)
                 .addEventListener(JoinListener(this))
                 .addEventListener(LeaveListener(this))
                 .addEventListener(GuildListener(this))
